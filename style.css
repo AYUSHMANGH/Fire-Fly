@@ -1,0 +1,200 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0b0c1a, #1a1a3d);
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    cursor: crosshair;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001; /* Ensure it's above other elements */
+}
+
+.dropdown-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dropdown-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.05); /* More transparent for glass effect */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* For Safari */
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    color: #f0f0f0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.dropdown-content p {
+    margin: 0;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Glassmorphism Footer */
+.glass-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+    color: #f0f0f0;
+    font-size: 14px;
+}
+
+.glass-footer p {
+    margin: 0;
+}
+
+canvas {
+    display: block;
+    background: transparent;
+}
+
+canvas#firefly-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+/* Add some atmospheric elements - subtle stars */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.1), transparent),
+        radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(1px 1px at 200px 60px, rgba(255,255,255,0.2), transparent);
+    background-repeat: repeat;
+    background-size: 250px 150px;
+    animation: sparkle 4s linear infinite;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Add forest silhouettes */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: 
+        linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%),
+        radial-gradient(ellipse at 10% 100%, rgba(0,0,0,0.9) 0%, transparent 30%),
+        radial-gradient(ellipse at 30% 100%, rgba(0,0,0,0.7) 0%, transparent 40%),
+        radial-gradient(ellipse at 60% 100%, rgba(0,0,0,0.8) 0%, transparent 35%),
+        radial-gradient(ellipse at 85% 100%, rgba(0,0,0,0.9) 0%, transparent 30%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.1; }
+}
+
+.instructions {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #f0e68c;
+    z-index: 10;
+    pointer-events: none;
+    text-shadow: 0 0 15px #f0e68c, 0 0 30px #ffd700;
+    user-select: none;
+}
+
+.instructions h1 {
+    font-size: 3em;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ffdb4d, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.instructions p {
+    font-size: 1.2em;
+    margin: 0;
+    opacity: 0.85;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffb347; }
+    50% { text-shadow: 0 0 20px #ffd700, 0 0 40px #ffb347; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 0.5; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .instructions h1 {
+        font-size: 2em;
+    }
+    .instructions p {
+        font-size: 1em;
+        padding: 0 20px;
+    }
+}
+
+/* Firefly glow effect on canvas elements */
+.firefly-glow {
+    filter: drop-shadow(0 0 6px #fffacd);
+}
